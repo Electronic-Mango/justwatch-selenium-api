@@ -1,7 +1,9 @@
+from os import getenv
 from re import sub
 from typing import NamedTuple
 
-from selenium.webdriver import Firefox, FirefoxOptions
+from dotenv import load_dotenv
+from selenium.webdriver import Firefox, FirefoxOptions, FirefoxService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebElement
 from selenium.webdriver.support.expected_conditions import (
@@ -31,9 +33,14 @@ class JustWatchApi:
 
     def __init__(self, country: str = "us"):
         self.country = country
+        load_dotenv()
+        firefox_bin = getenv("FIREFOX_BIN")
+        firefox_driver = getenv("FIREFOX_DRIVER")
         options = FirefoxOptions()
         options.add_argument("--headless")
-        self.driver = Firefox(options=options)
+        options.add_argument(f"binary_location={firefox_bin}")
+        service = FirefoxService(firefox_driver)
+        self.driver = Firefox(options=options, service=service)
         self.driver.implicitly_wait(10)
         self.driver.get(self.JUSTWATCH_URL)
         self._accept_cookies()

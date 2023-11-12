@@ -1,7 +1,8 @@
 from os import getenv
-from fastapi import FastAPI
 
 from dotenv import load_dotenv
+from fastapi import FastAPI
+
 from justwatch import JustWatchApi
 
 load_dotenv()
