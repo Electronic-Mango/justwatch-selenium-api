@@ -79,11 +79,21 @@ class JustWatchApi:
     def _parse_media(self, media: WebElement) -> MediaEntry:
         title = media.find_element(By.CLASS_NAME, "header-title").text
         year = sub(r"[)(]", "", media.find_element(By.CLASS_NAME, "header-year").text)
-        options = {
-            self._parse_option_name(option): self._parse_option(option)
-            for option in media.find_elements(By.CLASS_NAME, "buybox-row")
-        }
+        buybox = media.find_element(By.CLASS_NAME, "buybox__content")
+        options = self._parse_options(buybox)
         return MediaEntry(title, year, options)
+
+    def _parse_options(self, buybox: WebElement) -> dict[str, WatchOffer]:
+        # Since buybox is loaded, then these elements should be as well.
+        # Waiting for no-offer-row slows the API down significantly.
+        self.driver.implicitly_wait(0)
+        if buybox.find_elements(By.CLASS_NAME, "no-offer-row"):
+            return {}
+        self.driver.implicitly_wait(self.DEFAULT_IMPLICIT_WAIT)
+        return {
+            self._parse_option_name(option): self._parse_option(option)
+            for option in buybox.find_elements(By.CLASS_NAME, "buybox-row")
+        }
 
     def _parse_option_name(self, option: WebElement) -> str:
         return option.find_element(By.CLASS_NAME, "buybox-row__label").text.capitalize()
