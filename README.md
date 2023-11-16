@@ -14,6 +14,7 @@ It's slower than regular API would be, as Selenium has an execution time overhea
   * [Manually](#manually)
 * [Endpoints](#endpoints)
 * [Limitations and performance](#limitations-and-performance)
+* [Disclaimer](#disclaimer)
 
 
 
