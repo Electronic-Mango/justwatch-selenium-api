@@ -1,6 +1,6 @@
 # JustWatch API
 
-A basic [JustWatch](https://www.justwatch.com/) API.
+A basic and unofficial [JustWatch](https://www.justwatch.com/) API.
 
 Since standard free JustWatch API was removed this one uses [Selenium](https://www.selenium.dev/) to gather responses from JustWatch website directly.
 It's slower than regular API would be, as Selenium has an execution time overhead.
@@ -273,3 +273,11 @@ It responds always with 5 best matching entries as by default JustWatch loads on
 
 API is also quite slow, especially when running on less powerful machine, like Raspberry PI.
 That's the reason for limited details in responses.
+
+
+
+## Disclaimer
+
+This bot is in no way affiliated, associated, authorized, endorsed by, or in any way officially connected with JustWatch.
+This is an independent and unofficial project.
+Use at your own risk.
