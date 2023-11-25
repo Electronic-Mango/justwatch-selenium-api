@@ -5,6 +5,10 @@ A basic and unofficial [JustWatch](https://www.justwatch.com/) API.
 Since standard free JustWatch API was removed this one uses [Selenium](https://www.selenium.dev/) to gather responses from JustWatch website directly.
 It's slower than regular API would be, as Selenium has an execution time overhead.
 
+> [!NOTE]
+> I've created a Python API which uses GraphQL queries to access data: [`simple-justwatch-python-api`](https://github.com/Electronic-Mango/simple-justwatch-python-api).
+> It works much faster, returns a lot more information and is a lot simpler to use, as it doesn't require Selenium.
+> I recommend using it over this one.
 
 
 * [Requirements](#requirements)
